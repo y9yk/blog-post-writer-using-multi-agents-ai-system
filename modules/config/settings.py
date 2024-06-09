@@ -25,6 +25,7 @@ class Settings(BaseSettings):
     DEBUG: bool = True
 
     # project
+    OPENAI_MODEL_NAME: str = ""
     OPENAI_API_KEY: str = ""
     SERPER_API_KEY: str = ""
     GH_TOKEN: str = ""

@@ -38,7 +38,7 @@ class BlogPostWriterCrew(object):
     def __init__(self):
         self.create_agents(
             llm=ChatOpenAI(
-                model="gpt-4o",
+                model=settings.OPENAI_MODEL_NAME,
                 api_key=settings.OPENAI_API_KEY,
             )
         )
