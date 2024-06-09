@@ -1,6 +1,3 @@
-my best complete final answer to the task.
-
-```markdown
 # Introduction of Multi-Agents AI System like CrewAI
 
 ## TL;DR
@@ -168,4 +165,3 @@ edited_content = content_editor.edit_content(content)
 이 글에서는 다중 에이전트 시스템의 정의와 중요성, CrewAI의 주요 기능과 이점, 그리고 실제 구현 예제를 소개했습니다. 다중 에이전트 시스템은 AI, 로보틱스, 물류 등 다양한 분야에서 중요한 역할을 하며, CrewAI는 이러한 시스템을 구현하고 관리하는 데 탁월한 도구입니다. 독자들이 이 글을 통해 다중 에이전트 시스템과 CrewAI에 대한 이해를 높이고, 실제 문제 해결에 활용할 수 있기를 바랍니다.
 
 독자 여러분도 CrewAI를 사용해보세요! [CrewAI 웹사이트](https://www.crewai.com/)에서 더 많은 정보를 확인할 수 있습니다.
-```
