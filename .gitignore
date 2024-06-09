@@ -74,5 +74,8 @@ env/.env.prd
 resources/*
 !resources/*.md
 
+# db
+db
+
 # notebooks
 notebooks
