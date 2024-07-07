@@ -81,7 +81,8 @@ TASKS_DEFS = {
     "senior_content_writer_for_introduction": {
         "description": """
             1. 콘텐츠 계획을 활용하여 "{topic}"에 관한 블로그 서론(introduction)을 작성한다.
-            2. 글은 여러 소제목과 섹션을 활용하여 구조화된 형태로 구성되어야 한다.
+            2. "{research_output}"을 꼭 참고해야 한다.
+            3. 글은 여러 소제목과 섹션을 활용하여 구조화된 형태로 구성되어야 한다.
             3. "{topic}"과 관련된 다양한 예제(example 혹은 news)를 활용해서 독자의 흥미를 끌어야 한다.
             4. 글에서 참고한 자료들은 꼭 출처를 명시해야 한다.
             5. 출처는 각주를 활용해야 한다.
@@ -97,12 +98,13 @@ TASKS_DEFS = {
     "senior_content_writer_for_main_text": {
         "description": """
             1. 콘텐츠 계획을 활용하여 "{topic}"에 관한 블로그 본문(Main Text)를 작성한다.
-            2. 글은 여러 소제목과 섹션을 활용하여 구조화된 형태로 구성되어야 한다.
-            3. Senior Content Researcher가 소개한 자료들을 자세하게 소개해야 한다.
-            4. 글의 맥락이 어긋나지 않도록 Senior Content Writer for Introduction이 작성한 서론을 참고해야 한다.
-            5. 글의 내용을 구현하기 위해 필요한 코드는 Senior Content Writer For Code에게 부탁한다.
-            6. 글에서 참고한 자료들은 꼭 출처를 명시해야 한다.
-            7. 출처는 각주를 활용해야 한다.
+            2. "{research_output}"을 꼭 참고해야 한다.
+            3. 글은 여러 소제목과 섹션을 활용하여 구조화된 형태로 구성되어야 한다.
+            4. 글의 맥락이 어긋나지 않도록 글의 서론인 "{introduction_output}"을 꼭 참고해야 한다.
+            5. 서론과 결론을 제외한 본문만 작성하도록 한다.
+            6. 글의 내용을 구현하기 위해 필요한 코드는 Senior Content Writer For Code에게 부탁한다.
+            7. 글에서 참고한 자료들은 꼭 출처를 명시해야 한다.
+            8. 출처는 각주를 활용해야 한다.
             """,
         "expected_output": """
             GROUND RULES
@@ -134,8 +136,9 @@ TASKS_DEFS = {
     "senior_content_writer_for_conclusion": {
         "description": """
             1. 콘텐츠 계획을 활용하여 "{topic}"에 관한 블로그 결론(Conclusion)을 작성한다.
-            2. Senior Content Writer for Main Text가 작성한 내용을 잘 요약해야 한다.
-            3. 글은 여러 소제목과 섹션을 활용하여 구조화된 형태로 구성되어야 한다.
+            2. "{research_output}"을 꼭 참고해야 한다.
+            3. 글의 서론인 "{introduction_output}"과 글의 본문인 "{main_text_output}"을 잘 요약한 결론을 만들어야 한다.
+            4. 글은 여러 소제목과 섹션을 활용하여 구조화된 형태로 구성되어야 한다.
             """,
         "expected_output": """
             GROUND RULES
