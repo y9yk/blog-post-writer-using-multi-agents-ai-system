@@ -13,6 +13,7 @@ tools = "^0.1.9"
 tasks = "^2.8.0"
 pydantic-settings = "^2.0.3"
 click = "^8.1.7"
+pytz = "^2024.1"
 
 [tool.pyright]
 # https://github.com/microsoft/pyright/blob/main/docs/configuration.md
