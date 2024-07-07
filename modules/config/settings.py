@@ -2,6 +2,8 @@ import os
 from functools import lru_cache
 from os import path
 from typing import Dict
+from datetime import datetime
+from pytz import timezone
 
 from pydantic_settings import BaseSettings
 
@@ -32,9 +34,22 @@ class Settings(BaseSettings):
     GH_REPO: str = ""
 
     # workers
-    PLANNER: str = "senior_content_planner"
-    WRITER: str = "senior_content_writer"
+    RESEARCHER: str = "senior_content_researcher"
+    WRITER_FOR_INTRODUCTION: str = "senior_content_writer_for_introduction"
+    WRITER_FOR_MAIN_TEXT: str = "senior_content_writer_for_main_text"
+    WRITER_FOR_CONCLUSION: str = "senior_content_writer_for_conclusion"
+    WRITER_FOR_CODE: str = "senior_content_writer_for_code"
     EDITOR: str = "senior_content_editor"
+
+    # output files
+    CURRENT_DT: str = datetime.now(timezone("Asia/Seoul")).strftime("%Y%m%d")
+    OUTPUT_FILEPATH: str = f"{PROJECT_ROOT}/resources/{CURRENT_DT}"
+    OUTPUT_RESEARCH: str = f"{OUTPUT_FILEPATH}/research.md"
+    OUTPUT_INTRODUCTION: str = f"{OUTPUT_FILEPATH}/introduction.md"
+    OUTPUT_MAIN_TEXT: str = f"{OUTPUT_FILEPATH}/main_text.md"
+    OUTPUT_CONCLUSION: str = f"{OUTPUT_FILEPATH}/conclusion.md"
+    OUTPUT_CODE: str = f"{OUTPUT_FILEPATH}/code.md"
+    OUTPUT_FINAL: str = f"{OUTPUT_FILEPATH}/final.md"
 
     class Config:
         env_prefix = ""
