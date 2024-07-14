@@ -9,11 +9,16 @@ from blog_poster.utils import logger
 
 
 class OpenAIProvider(BaseLLMProvider):
-    def __init__(self, model, temperature, max_tokens):
+    def __init__(
+        self,
+        model: str = settings.OPENAI_MODEL_NAME,
+        temperature: float = 0,
+        max_tokens: int = 4096,
+    ):
         super().__init__()
-        self.model = model if model else settings.OPENAI_MODEL_NAME
-        self.temperature = temperature if temperature else 0
-        self.max_tokens = max_tokens if max_tokens else 4096
+        self.model = model
+        self.temperature = temperature
+        self.max_tokens = max_tokens
         self.api_key = self.get_api_key()
         self.base_url = self.get_base_url()
         self.llm = self.get_llm_model()
