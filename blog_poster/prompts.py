@@ -92,7 +92,7 @@ def generate_subtopic_report_prompt(
     report_format: str = "apa",
     max_subsections=5,
     total_words=800,
-    tone: Tone = Tone.Objective.value,
+    tone: Tone = Tone.Objective,
 ) -> str:
     return f"""
 "Context":
