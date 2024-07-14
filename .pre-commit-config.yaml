@@ -10,7 +10,11 @@ repos:
     rev: 5.12.0
     hooks:
       - id: isort
-        args: ["--profile", "black", "--skip", "__init__.py"]
+        args:
+          - "--profile"
+          - "black"
+          - "--skip"
+          - "__init__.py"
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.2.0
     hooks:
