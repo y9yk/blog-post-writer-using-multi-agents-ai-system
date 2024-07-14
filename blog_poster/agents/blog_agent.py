@@ -1,5 +1,6 @@
 import asyncio
 import json
+import traceback
 
 import json_repair
 from fastapi import WebSocket
@@ -50,9 +51,7 @@ class BlogAgent(BaseAgent):
             )
 
         # summarize raw data
-        context_compressor = ContextCompressor(
-            documents=documents, embeddings=self.embeddings
-        )
+        context_compressor = ContextCompressor(documents=documents, embeddings=self.embeddings)
 
         return context_compressor.get_context(
             query=query,
@@ -79,7 +78,7 @@ class BlogAgent(BaseAgent):
         new_urls = []
         for url in search_urls:
             if url not in self.visited_urls:
-                self.visited_urls.add(url)
+                self.visited_urls.append(url)
                 new_urls.append(url)
                 if settings.DEBUG:
                     await stream_output(
@@ -91,11 +90,7 @@ class BlogAgent(BaseAgent):
         return new_urls
 
     async def _get_agent_info(self):
-        query = (
-            f"{self.parent_query} - {self.query}"
-            if self.parent_query
-            else f"{self.query}"
-        )
+        query = f"{self.parent_query} - {self.query}" if self.parent_query else f"{self.query}"
         response = None
 
         try:
@@ -150,9 +145,7 @@ class BlogAgent(BaseAgent):
 
         # search urls
         search_results = self.retreiver.search(query=sub_query)
-        search_urls = await self._get_urls_from_search_results(
-            [url.get("href") for url in search_results]
-        )
+        search_urls = await self._get_urls_from_search_results([url.get("href") for url in search_results])
 
         # scrape contents from urls
         contents = self._get_scraped_contents_from_url(urls=search_urls)
@@ -183,9 +176,7 @@ class BlogAgent(BaseAgent):
             prompt = PromptTemplate(
                 template=generate_subtopics_prompt(),
                 input_variables=["task", "data", "subtopics", "max_subtopics"],
-                partial_variables={
-                    "format_instructions": parser.get_format_instructions()
-                },
+                partial_variables={"format_instructions": parser.get_format_instructions()},
             )
 
             provider = get_llm(llm_provider=settings.LLM_TYPE)
@@ -204,7 +195,9 @@ class BlogAgent(BaseAgent):
 
             return output
         except Exception as e:
-            logger.error("Exception in parsing subtopics : ", e)
+            if settings.DEBUG:
+                traceback.print_exc()
+            logger.error(f"Exception in parsing subtopics : {e}")
             return []
 
     async def _generate_introduction(self):
