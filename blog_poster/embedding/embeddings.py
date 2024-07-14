@@ -10,7 +10,7 @@ def get_embeddings(embedding_provider, **kwargs):
             _embeddings = OpenAIEmbeddings(
                 model=settings.OPENAI_EMBEDDING_MODEL,
                 openai_api_key=settings.OPENAI_API_KEY,
-                openai_api_base=settings.OPENAI_API_BASE,
+                # openai_api_base=settings.OPENAI_API_BASE,
                 check_embedding_ctx_length=False,
             )
         case "sentence":
