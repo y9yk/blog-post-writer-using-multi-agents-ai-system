@@ -5,7 +5,7 @@ from langchain_openai import ChatOpenAI
 
 from blog_poster.config import settings
 from blog_poster.llm.providers import BaseLLMProvider
-from blog_poster.utils import logger
+from blog_poster.utils import langfuse_handler, logger
 
 
 class OpenAIProvider(BaseLLMProvider):
@@ -65,7 +65,10 @@ class OpenAIProvider(BaseLLMProvider):
     ):
         if not stream:
             # Getting output from the model chain using ainvoke for asynchronous invoking
-            output = await self.llm.ainvoke(messages)
+            output = await self.llm.ainvoke(
+                messages,
+                config={"callbacks": [langfuse_handler]},
+            )
 
             return output.content
 
@@ -77,7 +80,12 @@ class OpenAIProvider(BaseLLMProvider):
         response = ""
 
         # Streaming the response using the chain astream method from langchain
-        async for chunk in self.llm.astream(messages):
+        async for chunk in self.llm.astream(
+            messages,
+            config={
+                "callbacks": [langfuse_handler],
+            },
+        ):
             content = chunk.content
             if content is not None:
                 response += content

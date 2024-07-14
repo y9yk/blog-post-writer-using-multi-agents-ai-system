@@ -62,6 +62,11 @@ class Settings(BaseSettings):
 
     CURRENT_DT: str = datetime.now(timezone("Asia/Seoul")).strftime("%Y%m%d")
 
+    # langfuse integration
+    LANGFUSE_SECRET_KEY: str = ""
+    LANGFUSE_PUBLIC_KEY: str = ""
+    LANGFUSE_HOST: str = ""
+
     class Config:
         env_prefix = ""
         env_file = [f"{os.path.dirname(os.path.abspath(__file__))}/{file_name}" for file_name in [".env"]]
