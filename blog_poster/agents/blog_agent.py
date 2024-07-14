@@ -335,5 +335,5 @@ class BlogAgent(BaseAgent):
                 self.websocket,
             )
 
-        report = self._generate_subtopic_report(existing_headers=existing_headers)
+        report = await self._generate_subtopic_report(existing_headers=existing_headers)
         return report
