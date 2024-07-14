@@ -9,15 +9,6 @@ from blog_poster.utils import logger
 
 
 async def stream_output(type, output, websocket: WebSocket = None, logging=True):
-    """
-    Streams output to the websocket
-    Args:
-        type:
-        output:
-
-    Returns:
-        None
-    """
     if not websocket or logging:
         logger.debug(output)
 
@@ -37,9 +28,7 @@ def extract_headers(markdown_text: str):
         # Check if the line starts with an HTML header tag
         if line.startswith("<h") and len(line) > 2 and line[2].isdigit():
             level = int(line[2])  # Extract header level
-            header_text = line[
-                line.index(">") + 1 : line.rindex("<")
-            ]  # Extract header text
+            header_text = line[line.index(">") + 1 : line.rindex("<")]  # Extract header text
 
             # Pop headers from the stack with higher or equal level
             while stack and stack[-1]["level"] >= level:
@@ -50,9 +39,7 @@ def extract_headers(markdown_text: str):
                 "text": header_text,
             }  # Create header dictionary
             if stack:
-                stack[-1].setdefault("children", []).append(
-                    header
-                )  # Append as child if parent exists
+                stack[-1].setdefault("children", []).append(header)  # Append as child if parent exists
             else:
                 # Append as top-level header if no parent exists
                 headers.append(header)
@@ -68,20 +55,14 @@ def table_of_contents(markdown_text: str):
         def generate_table_of_contents(headers, indent_level=0):
             toc = ""  # Initialize table of contents string
             for header in headers:
-                toc += (
-                    " " * (indent_level * 4) + "- " + header["text"] + "\n"
-                )  # Add header text with indentation
+                toc += " " * (indent_level * 4) + "- " + header["text"] + "\n"  # Add header text with indentation
                 if "children" in header:  # If header has children
-                    toc += generate_table_of_contents(
-                        header["children"], indent_level + 1
-                    )  # Generate TOC for children
+                    toc += generate_table_of_contents(header["children"], indent_level + 1)  # Generate TOC for children
             return toc  # Return the generated table of contents
 
         # Extract headers from markdown text
         headers = extract_headers(markdown_text)
-        toc = "## Table of Contents\n\n" + generate_table_of_contents(
-            headers
-        )  # Generate table of contents
+        toc = "## Table of Contents\n\n" + generate_table_of_contents(headers)  # Generate table of contents
 
         return toc  # Return the generated table of contents
 
@@ -120,7 +101,7 @@ async def handle_json_error(response):
         if agent_dict.get("server") and agent_dict.get("agent_role_prompt"):
             return agent_dict["server"], agent_dict["agent_role_prompt"]
     except Exception as e:
-        logger.erro(f"Error using json_repair: {e}")
+        logger.error(f"Error using json_repair: {e}")
 
     json_string = extract_json_with_regex(response)
     if json_string:
