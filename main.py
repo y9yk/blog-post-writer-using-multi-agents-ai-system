@@ -4,6 +4,7 @@ import click
 from fastapi import WebSocket
 
 from blog_poster.agents import BlogAgent
+from blog_poster.agents.schema import Subtopics
 from blog_poster.utils import add_source_urls, extract_headers, table_of_contents
 
 
@@ -76,7 +77,7 @@ class Processor(object):
     async def run(self):
         # step 1) research and generate subtopics
         await self.main_agent.research()
-        subtopics = await self.main_agent.generate_subtopics()
+        generated_subtopics: Subtopics = await self.main_agent.generate_subtopics()
 
         #
         self.global_context.extend(self.main_agent.context)
@@ -87,10 +88,10 @@ class Processor(object):
 
         # process subtopics
         report_body = []
-        for subtopic in subtopics:
+        for subtopic in generated_subtopics.subtopics:
             report_body.append(
                 await self._process_sub_topics(
-                    subtopic=subtopic,
+                    subtopic=subtopic.task,
                     verbose=self.verbose,
                     websocket=self.websocket,
                 )

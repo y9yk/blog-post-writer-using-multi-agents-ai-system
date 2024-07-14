@@ -169,7 +169,7 @@ class BlogAgent(BaseAgent):
 
         return contents
 
-    async def _get_subtopics(self):
+    async def _get_subtopics(self) -> Subtopics:
         try:
             parser = PydanticOutputParser(pydantic_object=Subtopics)
 
@@ -305,7 +305,7 @@ class BlogAgent(BaseAgent):
 
         return self.context
 
-    async def generate_subtopics(self):
+    async def generate_subtopics(self) -> Subtopics:
         if self.verbose:
             await stream_output(
                 "logs",
@@ -313,7 +313,7 @@ class BlogAgent(BaseAgent):
                 self.websocket,
             )
 
-        subtopics = await self._get_subtopics()
+        subtopics: Subtopics = await self._get_subtopics()
 
         if self.verbose:
             await stream_output(
