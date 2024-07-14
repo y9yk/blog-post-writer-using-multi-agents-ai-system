@@ -26,7 +26,7 @@ async def create_chat_completion(
     llm_provider: Optional[str] = None,
     stream: Optional[bool] = False,
     websocket: WebSocket | None = None,
-    llm_kwargs: Dict[str, Any] | None = None,
+    llm_kwargs: Dict[str, Any] = {},
     cost_callback: callable = None,
 ) -> str:
     """Create a chat completion using the OpenAI API
@@ -51,7 +51,7 @@ async def create_chat_completion(
 
     # Get the provider from supported providers
     provider: BaseLLMProvider = get_llm(
-        llm_provider,
+        llm_provider=llm_provider,
         model=model,
         temperature=temperature,
         max_tokens=max_tokens,

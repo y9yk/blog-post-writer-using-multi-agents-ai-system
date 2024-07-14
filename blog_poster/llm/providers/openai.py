@@ -11,9 +11,9 @@ from blog_poster.utils import logger
 class OpenAIProvider(BaseLLMProvider):
     def __init__(self, model, temperature, max_tokens):
         super().__init__()
-        self.model = model | settings.OPENAI_MODEL_NAME
-        self.temperature = temperature | 0
-        self.max_tokens = max_tokens | 4096
+        self.model = model if model else settings.OPENAI_MODEL_NAME
+        self.temperature = temperature if temperature else 0
+        self.max_tokens = max_tokens if max_tokens else 4096
         self.api_key = self.get_api_key()
         self.base_url = self.get_base_url()
         self.llm = self.get_llm_model()
@@ -25,11 +25,9 @@ class OpenAIProvider(BaseLLMProvider):
 
         """
         try:
-            api_key = os.environ["OPENAI_API_KEY"]
+            api_key = settings.OPENAI_API_KEY
         except KeyError:
-            raise Exception(
-                "OpenAI API key not found. Please set the OPENAI_API_KEY environment variable."
-            )
+            raise Exception("OpenAI API key not found. Please set the OPENAI_API_KEY environment variable.")
         return api_key
 
     def get_base_url(self):
@@ -81,9 +79,7 @@ class OpenAIProvider(BaseLLMProvider):
                 paragraph += content
                 if "\n" in paragraph:
                     if websocket is not None:
-                        await websocket.send_json(
-                            {"type": "report", "output": paragraph}
-                        )
+                        await websocket.send_json({"type": "report", "output": paragraph})
                     else:
                         logger.debug(f"{paragraph}")
                     paragraph = ""
