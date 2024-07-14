@@ -325,7 +325,7 @@ class BlogAgent(BaseAgent):
         return subtopics
 
     async def generate_introduction(self):
-        return self._generate_introduction(self)
+        return self._generate_introduction()
 
     async def generate_subtopic_report(self, existing_headers: list = []):
         if self.verbose:
