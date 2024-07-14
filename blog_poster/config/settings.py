@@ -34,11 +34,11 @@ class Settings(BaseSettings):
 
     # openai cost
     # Per OpenAI Pricing Page: https://openai.com/api/pricing/
-    ENCODING_MODEL = "o200k_base"
-    INPUT_COST_PER_TOKEN = 0.000005
-    OUTPUT_COST_PER_TOKEN = 0.000015
-    IMAGE_INFERENCE_COST = 0.003825
-    EMBEDDING_COST = 0.02 / 1000000  # Assumes new ada-3-small
+    ENCODING_MODEL: str = "o200k_base"
+    INPUT_COST_PER_TOKEN: float = 0.000005
+    OUTPUT_COST_PER_TOKEN: float = 0.000015
+    IMAGE_INFERENCE_COST: float = 0.003825
+    EMBEDDING_COST: float = 0.02 / 1000000  # Assumes new ada-3-small
 
     # embedding
     EMBEDDING_MODEL_PATH: str = f"{PROJECT_ROOT}/resources/embeddings"
@@ -47,7 +47,8 @@ class Settings(BaseSettings):
     RETRIEVER_TYPE: str = "duckduckgo"
     SCRAPER_TYPE: str = "web_base_loader"
     LLM_TYPE: str = "openai"
-    EMBEDDINGS_TYPE: str = "sentence"
+    # EMBEDDINGS_TYPE: str = "sentence"
+    EMBEDDINGS_TYPE: str = "openai"
 
     #
     MAX_RESULTS: int = 10
@@ -63,10 +64,7 @@ class Settings(BaseSettings):
 
     class Config:
         env_prefix = ""
-        env_file = [
-            f"{os.path.dirname(os.path.abspath(__file__))}/{file_name}"
-            for file_name in [".env"]
-        ]
+        env_file = [f"{os.path.dirname(os.path.abspath(__file__))}/{file_name}" for file_name in [".env"]]
         env_file_encoding = "utf-8"
 
 
