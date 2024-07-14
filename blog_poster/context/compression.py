@@ -7,7 +7,7 @@ from langchain.retrievers.document_compressors import (
 )
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-from blog_poster.context import DocumentRetreiver
+from blog_poster.context.retriever import DocumentRetreiver
 
 
 class ContextCompressor:
@@ -20,12 +20,8 @@ class ContextCompressor:
 
     def __get_contextual_retriever(self):
         splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
-        relevance_filter = EmbeddingsFilter(
-            embeddings=self.embeddings, similarity_threshold=self.similarity_threshold
-        )
-        pipeline_compressor = DocumentCompressorPipeline(
-            transformers=[splitter, relevance_filter]
-        )
+        relevance_filter = EmbeddingsFilter(embeddings=self.embeddings, similarity_threshold=self.similarity_threshold)
+        pipeline_compressor = DocumentCompressorPipeline(transformers=[splitter, relevance_filter])
         base_retriever = DocumentRetreiver(pages=self.documents)
         contextual_retriever = ContextualCompressionRetriever(
             base_compressor=pipeline_compressor, base_retriever=base_retriever
@@ -34,9 +30,7 @@ class ContextCompressor:
 
     def __pretty_print_docs(self, docs, top_n):
         return f"\n".join(
-            f"Source: {d.metadata.get('source')}\n"
-            f"Title: {d.metadata.get('title')}\n"
-            f"Content: {d.page_content}\n"
+            f"Source: {d.metadata.get('source')}\n" f"Title: {d.metadata.get('title')}\n" f"Content: {d.page_content}\n"
             for i, d in enumerate(docs)
             if i < top_n
         )
