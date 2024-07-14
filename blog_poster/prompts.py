@@ -67,6 +67,7 @@ def generate_subtopics_prompt() -> str:
 
     "중요!":
     - 모든 하위 주제는 주요 주제와 제공된 연구 데이터에만 관련이 있어야 합니다!
+    - 하위 주제는 반드시 한글로 작성되어야 합니다!
 
     {format_instructions}
 """
