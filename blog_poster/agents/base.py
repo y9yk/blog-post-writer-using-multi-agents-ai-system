@@ -18,6 +18,7 @@ class BaseAgent(object):
         agent_name: str = None,
         agent_role: str = None,
         context: List = [],
+        visited_urls: List = [],
         verbose: bool = False,
         websocket: WebSocket = None,
     ):
@@ -30,7 +31,7 @@ class BaseAgent(object):
         self.agent_name = agent_name
         self.agent_role = agent_role
         self.context = context
-        self.visited_urls = []
+        self.visited_urls = visited_urls
 
         # for logging
         self.verbose = verbose
