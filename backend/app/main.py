@@ -12,6 +12,7 @@ from backend.app.errors import (
     validation_exception_handler,
 )
 from backend.app.middlewares import HttpRequestLoggingMiddleware
+from backend.app.databases.mysql import mysql_session_manager
 from backend.app.modules.api import api_router, hc_api_router
 from backend.app.utils import get_root_logger
 
@@ -20,10 +21,16 @@ from backend.app.utils import get_root_logger
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # initialize databases
+    mysql_session_manager.init_app()
+
+    # create tables
+    await mysql_session_manager.create_tables()
 
     yield
 
     # shutdown gracefully
+    if mysql_session_manager._engine is not None:
+        await mysql_session_manager.close()
 
 
 # create application
