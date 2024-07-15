@@ -40,6 +40,7 @@ uvicorn = "^0.30.1"
 sqlalchemy = "^2.0.31"
 asyncmy = "^0.2.9"
 pymysql = "^1.1.1"
+greenlet = "^3.0.3"
 
 [[tool.poetry.source]]
 name = "pytorch_cpu"
