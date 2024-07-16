@@ -17,7 +17,7 @@ class Processor(object):
     ):
         #
         self.query = query
-        self.verbose = (verbose,)
+        self.verbose = verbose
         self.websocket = websocket
 
         self.global_urls = []
