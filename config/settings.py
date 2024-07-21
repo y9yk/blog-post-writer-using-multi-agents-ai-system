@@ -26,6 +26,20 @@ class Settings(BaseSettings):
 
     DEBUG: bool = True
 
+    # service
+    API_PREFIX: str = "/blog_poster/api"
+    API_HC_PREFIX: str = f"/blog_poster"
+
+    # db
+    DB_HOST: str = "localhost"
+    DB_USER: str = "root"
+    DB_PASS: str = ""
+    DB_NAME: str = "blog_poster"
+    DB_PORT: int = 3306
+    DB_ECHO: bool = True
+    DB_POOL_RECYCLE: int = 3600
+    DB_POOL_PRE_PING: bool = True
+
     # openai
     OPENAI_MODEL_NAME: str = ""
     OPENAI_API_KEY: str = ""
