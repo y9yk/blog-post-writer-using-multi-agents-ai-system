@@ -3,9 +3,9 @@ import os
 from fastapi import WebSocket
 from langchain_openai import ChatOpenAI
 
-from blog_poster.config import settings
 from blog_poster.llm.providers import BaseLLMProvider
 from blog_poster.utils import langfuse_handler, logger
+from config import settings
 
 
 class OpenAIProvider(BaseLLMProvider):

@@ -3,21 +3,17 @@ from typing import List
 from langchain_core.embeddings import Embeddings
 from sentence_transformers import SentenceTransformer
 
-from blog_poster.config import settings
+from config import settings
 
 
 class SentenceEmbeddings(Embeddings):
     def __init__(self):
         # load model
-        self.model = SentenceTransformer(
-            model_name_or_path=settings.EMBEDDING_MODEL_PATH
-        )
+        self.model = SentenceTransformer(model_name_or_path=settings.EMBEDDING_MODEL_PATH)
 
     def embed_documents(self, texts: List[str]) -> List[List[float]]:
         """Embed search docs."""
-        assert all(
-            bool(text) and isinstance(text, str) for text in texts
-        ), "submit a list of non-empty strings"
+        assert all(bool(text) and isinstance(text, str) for text in texts), "submit a list of non-empty strings"
 
         ret = []
         for text in texts:

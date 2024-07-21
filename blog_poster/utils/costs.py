@@ -1,6 +1,6 @@
 import tiktoken
 
-from blog_poster.config import settings
+from config import settings
 
 
 # Cost estimation is via OpenAI libraries and models. May vary for other models

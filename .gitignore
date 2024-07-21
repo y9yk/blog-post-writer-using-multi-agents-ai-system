@@ -75,7 +75,5 @@ resources/*
 !resources/*.md
 
 # db
-db
-
 # notebooks
 # notebooks
