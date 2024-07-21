@@ -1,5 +1,5 @@
-from blog_poster.config import settings
 from blog_poster.exceptions import NotImplementedException
+from config import settings
 
 
 def get_embeddings(embedding_provider, **kwargs):
@@ -10,7 +10,6 @@ def get_embeddings(embedding_provider, **kwargs):
             _embeddings = OpenAIEmbeddings(
                 model=settings.OPENAI_EMBEDDING_MODEL,
                 openai_api_key=settings.OPENAI_API_KEY,
-                # openai_api_base=settings.OPENAI_API_BASE,
                 check_embedding_ctx_length=False,
             )
         case "sentence":

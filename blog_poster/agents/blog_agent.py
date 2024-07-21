@@ -10,7 +10,6 @@ from langchain_core.embeddings import Embeddings
 
 from blog_poster.agents import BaseAgent
 from blog_poster.agents.schema import Subtopics
-from blog_poster.config import settings
 from blog_poster.context import ContextCompressor
 from blog_poster.embedding import get_embeddings
 from blog_poster.llm import create_chat_completion, get_llm
@@ -24,6 +23,7 @@ from blog_poster.prompts import (
 from blog_poster.retriever import BaseRetriever, get_retriever
 from blog_poster.scraper import Scraper
 from blog_poster.utils import handle_json_error, logger, stream_output
+from config import settings
 
 
 class BlogAgent(BaseAgent):

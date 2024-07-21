@@ -1,7 +1,7 @@
 from duckduckgo_search import DDGS
 
-from blog_poster.config import settings
 from blog_poster.retriever.providers import BaseRetriever
+from config import settings
 
 
 class Duckduckgo(BaseRetriever):
