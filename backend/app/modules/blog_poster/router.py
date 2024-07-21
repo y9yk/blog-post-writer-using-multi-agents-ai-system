@@ -1,7 +1,6 @@
 import json
 
 from fastapi import APIRouter, Request, WebSocket, WebSocketDisconnect
-from pydantic_core import from_json
 
 from backend.app.clients import WebSocketManager
 from backend.app.modules.blog_poster import BlogPosterRequest

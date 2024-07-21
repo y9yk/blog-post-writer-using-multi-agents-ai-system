@@ -5,7 +5,6 @@ from fastapi.exceptions import RequestValidationError
 from starlette.middleware.cors import CORSMiddleware
 
 from backend.app.clients import websocket_manager
-from backend.app.common.config import settings
 from backend.app.databases.mysql import mysql_session_manager
 from backend.app.errors import (
     APIException,
@@ -16,6 +15,7 @@ from backend.app.errors import (
 from backend.app.middlewares import HttpRequestLoggingMiddleware
 from backend.app.modules.api import api_router, hc_api_router
 from backend.app.utils import get_root_logger
+from config import settings
 
 
 # lifespan

@@ -8,12 +8,12 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 
-from backend.app.common.config import settings
 from backend.app.databases.mysql.models.base import Base
 from backend.app.errors.exceptions import (
     DatabaseEngineAlreadyClosedEx,
     SessionMakerIsNotInitializedEx,
 )
+from config import settings
 
 
 class MySQLDatabaseSessionManager(object):

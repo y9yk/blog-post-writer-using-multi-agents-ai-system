@@ -7,7 +7,7 @@ import sys
 import pytz
 from pythonjsonlogger import jsonlogger
 
-from backend.app.common.config import settings
+from config import settings
 
 LOG_FORMAT_PATTERN = "trace_id=%(trace_id)s %(asctime)s %(levelname)-7s %(message)s"
 
